@@ -2,6 +2,8 @@
 #include <stdexcept>
 #include <iostream>
 
+
+
 template <class T>
 class Queue 
 {
@@ -16,8 +18,12 @@ public:
 	// getters
 	bool is_empty();
 	bool is_full();
+	void show() const;
 	T get();
-	friend std::ostream& operator << (std::ostream& o, const Queue& q);
+	friend std::ostream& operator << (std::ostream& o, const Queue& q) {
+		q.show();
+		return o;
+	}
 	// setters
 	void put(T x);
 };
@@ -49,11 +55,15 @@ Queue<T>::~Queue()
 // getters
 
 template <class T>
-std::ostream& operator << (std::ostream& o, const Queue<T>& q)
+void Queue<T>::show() const
 {
-	for (int i = 0; i <= q.last; i++) std::cout << q.q[i] << ' ';
+	for (int i = 0; i < size; i++) {
+		if (i <= last) std::cout << q[i] << ", ";
+		else std::cout << 'x' << ", ";
+	}
 	std::cout << std::endl;
 }
+
 
 
 template <class T>
@@ -87,4 +97,5 @@ void Queue<T>::put(T x)
 	}
 	q[0] = x;
 	last++;
+	this->show();
 }
