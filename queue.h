@@ -93,9 +93,8 @@ void Queue<T>::put(T x)
 {
 	if (is_full()) throw std::overflow_error("Queue is full");
 	for (int i = last; i >= 0; i--) {
-		q[last + 1] = q[last];
+		q[i + 1] = q[i];
 	}
 	q[0] = x;
 	last++;
-	this->show();
 }
