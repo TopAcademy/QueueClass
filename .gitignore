@@ -1,0 +1,9 @@
+.vs/
+x64/
+*.vcxproj*
+*.sln
+
+# Executables
+*.exe
+*.out
+*.app
