@@ -1,14 +1,20 @@
 ﻿#include <iostream>
 #include "queue.h"
+using std::cout;
+using std::endl;
 
 int main()
 {
     Queue<int> q1(5);
-    q1.put(33);
-    q1.put(14);
-    q1.put(88);
-    q1.put(24);
-    q1.put(32);
+    q1 << 33 << 14 << 88;
     q1.show();
-    //std::cout << q1;
+    
+    //cout << q1.get() << endl;
+    //cout << q1.get() << endl;
+    int x;
+    cout << (q1 >> x) << endl;
+    cout << (q1 >> x) << endl;
+    q1.show();
+    q1 << 99;
+    cout << q1;
 }

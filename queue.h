@@ -3,7 +3,6 @@
 #include <iostream>
 
 
-
 template <class T>
 class Queue 
 {
@@ -20,12 +19,14 @@ public:
 	bool is_full();
 	void show() const;
 	T get();
+	T operator >> (T& right);
 	friend std::ostream& operator << (std::ostream& o, const Queue& q) {
 		q.show();
 		return o;
 	}
 	// setters
 	void put(T x);
+	Queue& operator << (T right);
 };
 
 
@@ -84,8 +85,18 @@ T Queue<T>::get()
 {
 	if (is_empty()) throw std::overflow_error("Queue is empty");
 	last--;
-	return q[last];
+	return q[last+1];
 }
+
+
+template <class T>
+T Queue<T>::operator>>(T& right)
+{
+	right = this->get();
+	return right;
+}
+
+
 
 // Put element to queue
 template <class T>
@@ -97,4 +108,11 @@ void Queue<T>::put(T x)
 	}
 	q[0] = x;
 	last++;
+}
+
+template <class T>
+Queue<T>& Queue<T>::operator<<(T right)
+{
+	this->put(right);
+	return *this;
 }
